@@ -1,0 +1,29 @@
+{
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in",
+      "authLevel": "function",
+      "route": "Spotify/Session",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "documentDB",
+      "name": "Session",
+      "databaseName": "Spotify",
+      "collectionName": "Sessions",
+      "createIfNotExists": true,
+      "connection": "dfati_DOCUMENTDB",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
