@@ -2,17 +2,17 @@
   write-host $_.exception.message
 }
 
-write-verbose "getting input" -Verbose
+"getting input"
 
-$RequestBody = (get-content -raw $request | convertfrom-json)
+$RequestBody = $request
 
-write-verbose "splitting input" -Verbose
+"splitting input"
 
 $RequestBody = $RequestBody -split '\\r\\n'
 
 $RequestBody = $RequestBody | ? { $_ -ne "" }
 
-write-verbose "getting artist by regex" -Verbose
+"getting artist by regex"
 
 $artist = $RequestBody -imatch 'Artist:?=? ?(.+)'
 if($artist){
@@ -20,7 +20,7 @@ if($artist){
   $Artist = $matches[1]
 }
 
-write-verbose "getting track by regex" -Verbose
+"getting track by regex"
 
 $track = $RequestBody -match 'track:?=? ?(.+)'
 if($track){
@@ -28,7 +28,7 @@ if($track){
   $track = $matches[1]
 }
 
-write-verbose "checking in case artist or track wasn't specified" -Verbose
+"checking in case artist or track wasn't specified"
 
 if($RequestBody.count -eq 2 -and [string]::IsNullOrEmpty($artist) -and [string]::IsNullOrEmpty($track)){
   $artist = $RequestBody[0]
@@ -40,13 +40,13 @@ if($RequestBody.count -eq 1 -and [string]::IsNullOrEmpty($track)){
 }
 
 
-write-verbose "building filter" -Verbose
+"building filter"
 $filter = "name:$track"
 
 if ([string]::IsNullOrEmpty($Artist) -eq $false) {
     $filter += " artist:$artist"
 }
 
-write-verbose "writing output" -Verbose
+"writing output"
 
 @{filter = $filter; functionkey = $REQ_QUERY_CODE} | convertto-json | Out-File -FilePath $queue -Encoding utf8
