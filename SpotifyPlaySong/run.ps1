@@ -8,8 +8,14 @@ $Global:SpotifyCredential = new-object pscredential -argumentlist $SessionData.C
 
 Connect-Spotify -ClientIdSecret $Global:SpotifyCredential -RefreshToken $SessionData.RefreshToken | out-null
 
-$Song = $in.Subject.ToUpper().replace("SPOTIFY REQUEST:","").trim()
+$filter = $in.filter
 
-$Track = Find-SpotifyTrack -Filter $Song -Limit 1
+if($in.subject){
+
+  $filter = $in.Subject.ToUpper().replace("SPOTIFY REQUEST:","").trim()
+}
+
+
+$Track = Find-SpotifyTrack -Filter $filter -Limit 1
 
 Resume-Spotify -context $Track.uri

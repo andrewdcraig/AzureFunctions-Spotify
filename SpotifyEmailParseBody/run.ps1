@@ -1,24 +1,32 @@
-﻿$RequestBody = (get-content -raw $request | convertfrom-json)
-
-$RequestBody = $RequestBody.trim()
-
-$RequestBody -match 'Artist:?=? ?(.+)' | out-null
-$Artist = $matches[1]
-
-$RequestBody -match 'track:?=? ?(.+)' | out-null
-$Track = $matches[1]
-
-if ([string]::IsNullOrEmpty($Artist)) {
-    $artist = $RequestBody.split()[0]
+﻿trap{
+  write-host $_.exception.message
 }
 
-if ([string]::IsNullOrEmpty($track)) {
-    $track = $RequestBody.split()[1]
+$RequestBody = (get-content -raw $request | convertfrom-json)
+
+$RequestBody = $RequestBody -split '\\r\\n'
+
+$RequestBody = $RequestBody | ? { $_ -ne "" }
+
+$artist = $RequestBody -imatch 'Artist:?=? ?(.+)'
+if($artist){
+  $artist -imatch 'Artist:?=? ?(.+)' | out-null
+  $Artist = $matches[1]
 }
 
-if ([string]::IsNullOrEmpty($track)) {
-    $track = $Artist
-    $Artist = $null
+$track = $RequestBody -match 'track:?=? ?(.+)'
+if($track){
+  $track -imatch 'track:?=? ?(.+)' | out-null
+  $track = $matches[1]
+}
+
+if($RequestBody.count -eq 2 -and [string]::IsNullOrEmpty($artist) -and [string]::IsNullOrEmpty($track)){
+  $artist = $RequestBody[0]
+  $track = $RequestBody[1]
+}
+
+if($RequestBody.count -eq 1 -and [string]::IsNullOrEmpty($track)){
+  $track = $RequestBody[0]
 }
 
 $filter = "name:$track"
