@@ -5,7 +5,7 @@
 "getting input"
 
 $RequestBody = $request
-
+$RequestBody
 "splitting input"
 
 $RequestBody = $RequestBody -split '\\r\\n'
