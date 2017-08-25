@@ -4,7 +4,7 @@
 
 "getting input"
 
-$RequestBody = $request
+$RequestBody = (Get-Content $request | convertfrom-json)
 $RequestBody
 "splitting input"
 
