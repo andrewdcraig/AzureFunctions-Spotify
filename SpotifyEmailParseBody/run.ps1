@@ -40,13 +40,13 @@ if($RequestBody.count -eq 1 -and [string]::IsNullOrEmpty($track)){
 }
 
 
-"building filter"
+"building filter $artist $track"
 $filter = "name:$track"
 
 if ([string]::IsNullOrEmpty($Artist) -eq $false) {
     $filter += " artist:$artist"
 }
 
-"writing output"
+"writing output $filter"
 
 @{filter = $filter; functionkey = $REQ_QUERY_CODE} | convertto-json | Out-File -FilePath $queue -Encoding utf8
