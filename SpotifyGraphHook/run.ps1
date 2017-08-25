@@ -12,7 +12,7 @@ if ([bool]($req_query_validationToken)) {
 } elseif (test-path $request) {
     $RequestBody = (get-content -raw $request | convertfrom-json)
     'subscriptionId: '+ $RequestBody.value.subscriptionId
-    import-module 'D:\home\site\wwwroot\PSModules\PSSpotify\0.0.0.2\PSSpotify.psd1' -force
+    import-module 'D:\home\site\wwwroot\PSModules\PSSpotify\PSSpotify.psd1' -force
 
     $resource = $RequestBody.value.resource;
 
