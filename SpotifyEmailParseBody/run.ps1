@@ -3,8 +3,10 @@
 }
 
 "getting input"
-
-$RequestBody = convertfrom-json (get-content -raw $request)
+$request
+$request | fl
+Get-Variable
+$RequestBody = $request
 $RequestBody
 "splitting input"
 
