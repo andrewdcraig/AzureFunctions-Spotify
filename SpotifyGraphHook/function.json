@@ -18,7 +18,7 @@
       "type": "queue",
       "name": "Queue",
       "queueName": "spotifyplaylist",
-      "connection": "dftaibackup_STORAGE",
+      "connection": "azurefunctionss8c53_STORAGE",
       "direction": "out"
     }
   ],

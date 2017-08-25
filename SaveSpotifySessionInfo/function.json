@@ -21,7 +21,7 @@
       "databaseName": "Spotify",
       "collectionName": "Sessions",
       "createIfNotExists": true,
-      "connection": "dfati_DOCUMENTDB",
+      "connection": "mracraig_DOCUMENTDB",
       "direction": "out"
     }
   ],

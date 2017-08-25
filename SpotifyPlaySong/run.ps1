@@ -6,9 +6,10 @@ import-module 'D:\home\site\wwwroot\PSModules\PSSpotify\0.0.0.2\PSSpotify.psd1' 
 
 $Global:SpotifyCredential = new-object pscredential -argumentlist $SessionData.ClientId, (convertto-securestring -asplaintext -force $SessionData.Secret)
 
-Connect-Spotify -ClientIdSecret $Global:SpotifyCredential -RefreshToken $SessionData.RefreshToken | out-null
+Connect-Spotify -ClientIdSecret $Global:SpotifyCredential -RefreshToken $SessionData.RefreshToken #| out-null
 
 $filter = $in.filter
+$filter
 
 if($in.subject){
 

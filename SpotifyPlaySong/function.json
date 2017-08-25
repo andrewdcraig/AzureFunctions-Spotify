@@ -5,14 +5,14 @@
       "type": "queueTrigger",
       "direction": "in",
       "queueName": "spotifyplaylist",
-      "connection": "dftaibackup_STORAGE"
+      "connection": "azurefunctionss8c53_STORAGE"
     },
     {
       "type": "documentDB",
       "name": "SessionDoc",
       "databaseName": "Spotify",
       "collectionName": "Sessions",
-      "connection": "dfati_DOCUMENTDB",
+      "connection": "mracraig_DOCUMENTDB",
       "direction": "in",
       "id": "{functionkey}"
     }

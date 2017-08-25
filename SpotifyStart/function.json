@@ -11,7 +11,7 @@
       "name": "SessionDoc",
       "databaseName": "Spotify",
       "collectionName": "Sessions",
-      "connection": "dfati_DOCUMENTDB",
+      "connection": "mracraig_DOCUMENTDB",
       "direction": "in",
       "id": "{code}"
     },
