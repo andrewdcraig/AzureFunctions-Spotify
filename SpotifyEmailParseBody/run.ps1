@@ -40,10 +40,10 @@ if($RequestBody.count -eq 1 -and [string]::IsNullOrEmpty($track)){
 
 
 "building filter $artist $track"
-$filter = "name:$track"
+$filter = "name=$track"
 
 if ([string]::IsNullOrEmpty($Artist) -eq $false) {
-    $filter += " artist:$artist"
+    $filter += " artist=$artist"
 }
 
 "writing output $filter"
