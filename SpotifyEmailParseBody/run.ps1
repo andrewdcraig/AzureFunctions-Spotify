@@ -3,10 +3,7 @@
 }
 
 "getting input"
-Get-Content $request
-Get-Variable -name "request" | select Name, Value
 $RequestBody = Get-Content $request
-Get-Variable -name "RequestBody" | select Name, Value
 $RequestBody
 "splitting input"
 

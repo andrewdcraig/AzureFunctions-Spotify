@@ -16,7 +16,7 @@
     },
     {
       "type": "queue",
-      "name": "Queue",
+      "name": "queue",
       "queueName": "spotifyplaylist",
       "connection": "azurefunctionss8c53_STORAGE",
       "direction": "out"
