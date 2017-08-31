@@ -3,9 +3,8 @@
 }
 
 "getting input"
-$request
-$request | fl
-Get-Variable
+Get-Content $request
+Get-Variable | select Name, Value
 $RequestBody = $request
 $RequestBody
 "splitting input"
