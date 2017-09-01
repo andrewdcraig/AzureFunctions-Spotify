@@ -1,4 +1,4 @@
-$in = (Get-Content $triggerInput -raw | convertfrom-json)
+$in = (Get-Content $triggerInput | convertfrom-json)
 $in
 $SessionData = convertfrom-json (get-content -raw $sessiondoc)
 $SessionData
