@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "name": "request",
+      "type": "httpTrigger",
+      "direction": "in",
+      "authLevel": "function",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "queue",
+      "name": "queue",
+      "queueName": "spotifyplaylist",
+      "connection": "azurefunctionss8c53_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

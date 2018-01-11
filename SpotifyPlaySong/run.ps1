@@ -1,15 +1,27 @@
-$in = (Get-Content $triggerInput -raw | convertfrom-json)
-
+$triggerInput
+Get-Content $triggerInput
+$in = (Get-Content $triggerInput | convertfrom-json)
+$in
 $SessionData = convertfrom-json (get-content -raw $sessiondoc)
-
-import-module 'D:\home\site\wwwroot\PSModules\PSSpotify\0.0.0.2\PSSpotify.psd1' -force
+$SessionData
+$SessionData.ClientId
+$SessionData.Secret
+$SessionData.RefreshToken
+import-module 'D:\home\site\wwwroot\PSModules\PSSpotify\PSSpotify.psd1' -force
 
 $Global:SpotifyCredential = new-object pscredential -argumentlist $SessionData.ClientId, (convertto-securestring -asplaintext -force $SessionData.Secret)
 
-Connect-Spotify -ClientIdSecret $Global:SpotifyCredential -RefreshToken $SessionData.RefreshToken | out-null
+Connect-Spotify -ClientIdSecret $Global:SpotifyCredential -RefreshToken $SessionData.RefreshToken #| out-null
 
-$Song = $in.Subject.ToUpper().replace("SPOTIFY REQUEST:","").trim()
+$filter = $in.filter
+$filter
 
-$Track = Find-SpotifyTrack -Filter $Song -Limit 1
+if($in.subject){
+
+  $filter = $in.Subject.ToUpper().replace("SPOTIFY REQUEST:","").trim()
+}
+
+
+$Track = Find-SpotifyTrack -Filter $filter -Limit 1
 
 Resume-Spotify -context $Track.uri
